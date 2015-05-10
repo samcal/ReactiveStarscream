@@ -27,4 +27,4 @@ DerivedData
 *.xcodeproj/*.xcworkspace
 
 # Carthage
-Carthage/Build
+Carthage
