@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		224DEF241B01656B00A4CD30 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E7A0419D48C41006071F7 /* WebSocket.swift */; };
 		22B965B21AFF44020019F1E1 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B965B11AFF44020019F1E1 /* ReactiveCocoa.framework */; };
 		6B3E7A0319D48C2F006071F7 /* StarscreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E7A0119D48C2F006071F7 /* StarscreamTests.swift */; };
 		6B3E7A0519D48C41006071F7 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E7A0419D48C41006071F7 /* WebSocket.swift */; };
@@ -152,7 +153,7 @@
 				6B3E79E219D48B7F006071F7 /* Frameworks */,
 				6B3E79E319D48B7F006071F7 /* Headers */,
 				6B3E79E419D48B7F006071F7 /* Resources */,
-				22B965B31AFF440C0019F1E1 /* ShellScript */,
+				22B965B31AFF440C0019F1E1 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -291,7 +292,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		22B965B31AFF440C0019F1E1 /* ShellScript */ = {
+		22B965B31AFF440C0019F1E1 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -299,6 +300,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/ReactiveCocoa.framework",
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B3E7A0319D48C2F006071F7 /* StarscreamTests.swift in Sources */,
+				224DEF241B01656B00A4CD30 /* WebSocket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
