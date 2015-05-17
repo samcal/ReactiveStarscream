@@ -47,7 +47,7 @@ websocketDidDisconnect is called as soon as the client is disconnected from the 
 
 ```swift
 func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
-	println("websocket is disconnected: \(error!.localizedDescription)")
+	println("websocket is disconnected: \(error?.localizedDescription)")
 }
 ```
 
@@ -149,6 +149,18 @@ socket.voipEnabled = true
 //set this you want to ignore SSL cert validation, so a self signed SSL certificate can be used.
 socket.selfSignedSSL = true
 ```
+
+### SSL Pinning
+
+SSL Pinning is also supported in Starscream. 
+
+```swift
+var socket = WebSocket(url: NSURL(scheme: "ws", host: "localhost:8080", path: "/"), protocols: ["chat","superchat"])
+let data = ... //load your certificate from disk
+socket.security = Security(certs: [SSLCert(data: data)], usePublicKeys: true)
+//socket.security = Security() //uses the .cer files in your app's bundle
+```
+You load either a `NSData` blob of your certificate or you can use a `SecKeyRef` if you have a public key you want to use. The `usePublicKeys` bool is whether to use the certificates for validation or the public keys. The public keys will be extracted from the certificates automatically if `usePublicKeys` is choosen.
 
 ### Custom Queue
 
