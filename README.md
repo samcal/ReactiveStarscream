@@ -1,15 +1,13 @@
-![starscream](http://limitedtoy.com/wp-content/uploads/2014/09/transformers-starscream-wallpaperstarscream-transformers-2-wallpaper---332913-pnx7lnff.jpg)
+# ReactiveStarscream
 
-Starscream is a conforming WebSocket ([RFC 6455](http://tools.ietf.org/html/rfc6455)) client library in Swift for iOS and OSX.
-
-It's Objective-C counter part can be found here: [Jetfire](https://github.com/acmacalister/jetfire)
+ReactiveStarscream is a conforming WebSocket ([RFC 6455](http://tools.ietf.org/html/rfc6455)) client library in Swift for iOS and OSX, that uses RAC 3.0 signals.
 
 
 ## Features
 
 - Conforms to all of the base [Autobahn test suite](http://autobahn.ws/testsuite/).
 - Nonblocking. Everything happens in the background, thanks to GCD.
-- Simple delegate pattern design.
+- Simple reactive design
 - TLS/WSS support.
 - Simple concise codebase at just a few hundred LOC.
 
@@ -18,60 +16,21 @@ It's Objective-C counter part can be found here: [Jetfire](https://github.com/ac
 First thing is to import the framework. See the Installation instructions on how to add the framework to your project.
 
 ```swift
-import Starscream
+import ReactiveStarscream
 ```
 
-Once imported, you can open a connection to your WebSocket server. Note that `socket` is probably best as a property, so your delegate can stick around.
+Once imported, you can open a connection to your WebSocket server.
 
 ```swift
 var socket = WebSocket(url: NSURL(scheme: "ws", host: "localhost:8080", path: "/"))
-socket.delegate = self
 socket.connect()
 ```
 
-After you are connected, there are some delegate methods that we need to implement.
-
-### websocketDidConnect
-
-websocketDidConnect is called as soon as the client connects to the server.
-
-```swift
-func websocketDidConnect(socket: WebSocket) {
-    println("websocket is connected")
-}
-```
-
-### websocketDidDisconnect
-
-websocketDidDisconnect is called as soon as the client is disconnected from the server.
-
-```swift
-func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
-	println("websocket is disconnected: \(error?.localizedDescription)")
-}
-```
-
-### websocketDidReceiveMessage
-
-websocketDidReceiveMessage is called when the client gets a text frame from the connection.
-
-```swift
-func websocketDidReceiveMessage(socket: WebSocket, text: String) {
-	println("got some text: \(text)")
-}
-```
-
-### websocketDidReceiveData
-
-websocketDidReceiveData is called when the client gets a binary frame from the connection.
-
-```swift
-func websocketDidReceiveData(socket: WebSocket, data: NSData) {
-	println("got some data: \(data.length)")
-}
-```
-
-The delegate methods give you a simple way to handle data from the server, but how do you send data?
+In order to read data and text from the WebSocket, use the two public `Signal`s
+from the WebSocket class. `socket.dataEvents: Signal<NSData, NSError>` and
+`socket.textEvents: Signal<String, NSError>`. The `Signal` will carry the
+information that the WebSocket receives, and will send `Completed` and `Error`
+events as appropriate.
 
 ### writeData
 
@@ -152,7 +111,7 @@ socket.selfSignedSSL = true
 
 ### SSL Pinning
 
-SSL Pinning is also supported in Starscream. 
+SSL Pinning is also supported in ReactiveStarscream. 
 
 ```swift
 var socket = WebSocket(url: NSURL(scheme: "ws", host: "localhost:8080", path: "/"), protocols: ["chat","superchat"])
@@ -178,53 +137,41 @@ Check out the SimpleTest project in the examples directory to see how to setup a
 
 ## Requirements
 
-Starscream works with iOS 7/OSX 10.9 or above. It is recommended to use iOS 8/10.10 or above for Cocoapods/framework support.
+ReactiveStarscream works with iOS 7/OSX 10.9 or above. It is recommended to use iOS 8/10.10 or above for Cocoapods/framework support.
 
 ## Installation
 
-### Cocoapods
+### Carthage
 
-Check out [Get Started](http://cocoapods.org/) tab on [cocoapods.org](http://cocoapods.org/).
+To use ReactiveStarscream in your project add the following 'Cartfile' to your project
 
-To use Starscream in your project add the following 'Podfile' to your project
-
-	source 'https://github.com/CocoaPods/Specs.git'
-	platform :ios, '8.0'
-	use_frameworks!
-
-	pod 'Starscream', '~> 0.9.2'
+	github "samcal/ReactiveStarscream"
 
 Then run:
 
-    pod install
-
-### Carthage
-
-Check out the [Carthage](https://github.com/Carthage/Carthage) docs on how to add a install. The `Starscream` framework is already setup with shared schemes.
-
-[Carthage Install](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application)
+    carthage install
 
 ### Rogue
 
 First see the [installation docs](https://github.com/acmacalister/Rogue) for how to install Rogue.
 
-To install Starscream run the command below in the directory you created the rogue file.
+To install ReactiveStarscream run the command below in the directory you created the rogue file.
 
 ```
 rogue add https://github.com/daltoniam/starscream
 ```
 
-Next open the `libs` folder and add the `Starscream.xcodeproj` to your Xcode project. Once that is complete, in your "Build Phases" add the `Starscream.framework` to your "Link Binary with Libraries" phase. Make sure to add the `libs` folder to your `.gitignore` file.
+Next open the `libs` folder and add the `ReactiveStarscream.xcodeproj` to your Xcode project. Once that is complete, in your "Build Phases" add the `ReactiveStarscream.framework` to your "Link Binary with Libraries" phase. Make sure to add the `libs` folder to your `.gitignore` file.
 
 ### Other
 
 Simply grab the framework (either via git submodule or another package manager).
 
-Add the `Starscream.xcodeproj` to your Xcode project. Once that is complete, in your "Build Phases" add the `Starscream.framework` to your "Link Binary with Libraries" phase.
+Add the `ReactiveStarscream.xcodeproj` to your Xcode project. Once that is complete, in your "Build Phases" add the `ReactiveStarscream.framework` to your "Link Binary with Libraries" phase.
 
 ### Add Copy Frameworks Phase
 
-If you are running this in an OSX app or on a physical iOS device you will need to make sure you add the `Starscream.framework` to be included in your app bundle. To do this, in Xcode, navigate to the target configuration window by clicking on the blue project icon, and selecting the application target under the "Targets" heading in the sidebar. In the tab bar at the top of that window, open the "Build Phases" panel. Expand the "Link Binary with Libraries" group, and add `Starscream.framework`. Click on the + button at the top left of the panel and select "New Copy Files Phase". Rename this new phase to "Copy Frameworks", set the "Destination" to "Frameworks", and add `Starscream.framework` respectively.
+If you are running this in an OSX app or on a physical iOS device you will need to make sure you add the `ReactiveStarscream.framework` to be included in your app bundle. To do this, in Xcode, navigate to the target configuration window by clicking on the blue project icon, and selecting the application target under the "Targets" heading in the sidebar. In the tab bar at the top of that window, open the "Build Phases" panel. Expand the "Link Binary with Libraries" group, and add `ReactiveStarscream.framework`. Click on the + button at the top left of the panel and select "New Copy Files Phase". Rename this new phase to "Copy Frameworks", set the "Destination" to "Frameworks", and add `ReactiveStarscream.framework` respectively.
 
 ## TODOs
 
@@ -233,7 +180,7 @@ If you are running this in an OSX app or on a physical iOS device you will need 
 
 ## License
 
-Starscream is licensed under the Apache v2 License.
+ReactiveStarscream is licensed under the Apache v2 License.
 
 ## Contact
 
