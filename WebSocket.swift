@@ -291,9 +291,9 @@ public class WebSocket : NSObject, NSStreamDelegate {
         }        
         outputStream = nil
         isRunLoop = false
-        connected = false
         certValidated = false
         self.doDisconnect(error)
+        connected = false
     }
     
     ///handles the incoming bytes and sending them to the proper processing method
@@ -687,8 +687,8 @@ public class WebSocket : NSObject, NSStreamDelegate {
     
     ///used to preform the disconnect delegate
     private func doDisconnect(error: NSError?) {
-        dispatch_async(queue,{
-            if self.isConnected {
+        if self.isConnected {
+            dispatch_async(queue,{
                 if let e = error {
                     sendError(self._dataEventsObserver, e)
                     sendError(self._textEventsObserver, e)
@@ -696,9 +696,8 @@ public class WebSocket : NSObject, NSStreamDelegate {
                     sendCompleted(self._dataEventsObserver)
                     sendCompleted(self._textEventsObserver)
                 }
-            }
-            self.connected = false
-        })
+            })
+        }
     }
     
 }
