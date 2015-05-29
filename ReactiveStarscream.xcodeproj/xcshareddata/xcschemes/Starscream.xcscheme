@@ -14,24 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D9C3E35E19E48FF1009FC285"
-               BuildableName = "Starscream.framework"
-               BlueprintName = "StarscreamOSX"
-               ReferencedContainer = "container:Starscream.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D9C3E36819E48FF1009FC285"
-               BuildableName = "StarscreamOSXTests.xctest"
-               BlueprintName = "StarscreamOSXTests"
-               ReferencedContainer = "container:Starscream.xcodeproj">
+               BlueprintIdentifier = "6B3E79E519D48B7F006071F7"
+               BuildableName = "ReactiveStarscream.framework"
+               BlueprintName = "ReactiveStarscream"
+               ReferencedContainer = "container:ReactiveStarscream.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -42,26 +28,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D9C3E36819E48FF1009FC285"
-               BuildableName = "StarscreamOSXTests.xctest"
-               BlueprintName = "StarscreamOSXTests"
-               ReferencedContainer = "container:Starscream.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D9C3E35E19E48FF1009FC285"
-            BuildableName = "Starscream.framework"
-            BlueprintName = "StarscreamOSX"
-            ReferencedContainer = "container:Starscream.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -75,10 +42,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D9C3E35E19E48FF1009FC285"
-            BuildableName = "Starscream.framework"
-            BlueprintName = "StarscreamOSX"
-            ReferencedContainer = "container:Starscream.xcodeproj">
+            BlueprintIdentifier = "6B3E79E519D48B7F006071F7"
+            BuildableName = "ReactiveStarscream.framework"
+            BlueprintName = "ReactiveStarscream"
+            ReferencedContainer = "container:ReactiveStarscream.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -93,10 +60,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D9C3E35E19E48FF1009FC285"
-            BuildableName = "Starscream.framework"
-            BlueprintName = "StarscreamOSX"
-            ReferencedContainer = "container:Starscream.xcodeproj">
+            BlueprintIdentifier = "6B3E79E519D48B7F006071F7"
+            BuildableName = "ReactiveStarscream.framework"
+            BlueprintName = "ReactiveStarscream"
+            ReferencedContainer = "container:ReactiveStarscream.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
