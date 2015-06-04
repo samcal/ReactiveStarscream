@@ -1,0 +1,9 @@
+[submodule "Carthage/Checkouts/ReactiveCocoa"]
+	path = examples/SimpleTest/Carthage/Checkouts/ReactiveCocoa
+	url = https://github.com/ReactiveCocoa/ReactiveCocoa.git
+[submodule "Carthage/Checkouts/Result"]
+	path = examples/SimpleTest/Carthage/Checkouts/Result
+	url = https://github.com/antitypical/Result.git
+[submodule "Carthage/Checkouts/ReactiveStarscream"]
+	path = examples/SimpleTest/Carthage/Checkouts/ReactiveStarscream
+	url = https://github.com/samcal/ReactiveStarscream.git
