@@ -6,36 +6,28 @@
 //  Copyright (c) 2014 vluxe. All rights reserved.
 //
 
+import ReactiveCocoa
+import ReactiveStarscream
 import UIKit
-import Starscream
 
-class ViewController: UIViewController, WebSocketDelegate {
+class ViewController: UIViewController {
     var socket = WebSocket(url: NSURL(scheme: "ws", host: "localhost:8080", path: "/")!, protocols: ["chat", "superchat"])
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        socket.delegate = self
+        
+        socket.textEvents
+            |> map { return "Recieved text: \($0)" }
+            |> observe(next: println)
+        
+        socket.dataEvents
+            |> map { return "Recieved data: \($0.length)" }
+            |> observe(next: println)
+        
+        socket.textEvents
+            |> observe(error: { println("websocket is disconnected: \($0.localizedDescription)") })
+        
         socket.connect()
-    }
-    
-    // MARK: Websocket Delegate Methods.
-    
-    func websocketDidConnect(ws: WebSocket) {
-        println("websocket is connected")
-    }
-    
-    func websocketDidDisconnect(ws: WebSocket, error: NSError?) {
-        if let e = error {
-            println("websocket is disconnected: \(e.localizedDescription)")
-        }
-    }
-    
-    func websocketDidReceiveMessage(ws: WebSocket, text: String) {
-        println("Received text: \(text)")
-    }
-    
-    func websocketDidReceiveData(ws: WebSocket, data: NSData) {
-        println("Received data: \(data.length)")
     }
     
     // MARK: Write Text Action
