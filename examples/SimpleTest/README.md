@@ -4,11 +4,11 @@ This is a very simple example on how to use Starscream.
 
 # Usage
 
-First make sure you have the gem dependencies of websocket server.
+First, install the dependencies of the server and the app.
 
 ```
-gem install em-websocket
-gem install faker
+bundle install
+carthage update
 ```
 
 Next simply run:
